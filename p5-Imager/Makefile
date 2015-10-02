@@ -10,6 +10,8 @@ HOMEPAGE=		https://metacpan.org/release/Imager
 COMMENT=		Perl module for manipulating gray, color, and RGBA format images
 LICENSE=		${PERL5_LICENSE}
 
+USE_MULTIARCH=		lib
+
 PERL5_PACKLIST=		auto/Imager/.packlist
 
 .include "../../fonts/t1lib/buildlink3.mk"
