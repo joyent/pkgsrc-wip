@@ -1,0 +1,8 @@
+===========================================================================
+# $NetBSD$
+
+To enable this package, run the following command as pgsql superuser
+
+	sudo -u postgres psql -d database -c "create extension pg_trgm;"
+
+===========================================================================
