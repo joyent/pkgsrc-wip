@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2021/01/01 09:52:19 ryoon Exp $
+# $NetBSD: Makefile,v 1.33 2021/01/14 12:25:33 mef Exp $
 
-DISTNAME=	klayout-0.26.8
-PKGREVISION=	2
+DISTNAME=	klayout-0.26.11
 CATEGORIES=	cad
 MASTER_SITES=	http://www.klayout.org/downloads/source/
 
@@ -11,13 +10,10 @@ COMMENT=	Simple GDS and OASIS file viewer and Editor
 LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	gmake bash
+USE_TOOLS+=	gmake bash pax
 
 CFLAGS+=	-I${PREFIX}/include/python${PYVERSUFFIX}
 NO_CONFIGURE=	yes
-
-CHECK_SHLIBS_SKIP+=	lib/klayout/plugins/streamers/*/unit_tests/* \
-			lib/klayout/plugins/tools/net_tracer/unit_tests/*
 
 SUBST_CLASSES+=		rpath
 SUBST_MESSAGE.rpath=	Add COMPILER_RPATH_FLAG and PREFIX to NetBSD specific config file
@@ -29,9 +25,11 @@ BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 
 AUTO_MKDIRS=		yes
 INSTALL_BINDIR=		${DESTDIR}${PREFIX}/bin
-INSTALL_LIBDIR=		${DESTDIR}${PREFIX}/lib
-REL_DIR=		build-release
+INSTALL_LIBDIR=		${DESTDIR}${PREFIX}/lib/klayout
+REL_DIR=		bin-release
+PLUGINS_DIR=		db_plugins lay_plugins pymod
 INSTALLATION_DIRS+=	lib/klayout
+
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -40,31 +38,27 @@ MAKE_JOBS_FLAG=		-option -j${MAKE_JOBS}
 .endif
 
 do-build:
-	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} ${BASH} build.sh \
+	cd ${WRKSRC} && ${MKDIR} ${REL_DIR} && \
+	${PKGSRC_SETENV} ${MAKE_ENV} ${BASH} build.sh \
 	-python python${PYVERSSUFFIX} \
 	-qt5 \
 	-qmake ${PREFIX}/qt5/bin/qmake \
 	-ruby ${PREFIX}/bin/${RUBY_NAME} \
 	${MAKE_JOBS_FLAG} \
-	-prefix ${PREFIX}
+	-prefix ${REL_DIR} \
+	-rpath ${PREFIX}/lib/klayout
 
 do-install:
-	cd ${WRKSRC} && \
-	rsync     -aH      ${WRKSRC}/${REL_DIR}/libklayout_* \
-		${DESTDIR}${PREFIX}/lib/klayout && \
-	rsync     -aH --exclude=\*\.o      ${WRKSRC}/${REL_DIR}/plugins/ \
-		${DESTDIR}${PREFIX}/lib/klayout/plugins/ && \
-	rsync     -aH --exclude=\*\.o      ${WRKSRC}/${REL_DIR}/db_plugins/ \
-		${DESTDIR}${PREFIX}/lib/klayout/db_plugins/
+	cd ${WRKSRC}/${REL_DIR} && \
+	${PAX} -wr libklayout* ${PLUGINS_DIR} ${INSTALL_LIBDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/${REL_DIR}/strm* \
-		${DESTDIR}${PREFIX}/bin
+		${INSTALL_BINDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/${REL_DIR}/klayout \
-		${DESTDIR}${PREFIX}/bin
+		${INSTALL_BINDIR}
 
 .include "../../lang/python/pyversion.mk"
 .include "../../lang/ruby/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"
 .include "../../x11/qt5-qttools/buildlink3.mk"
-BUILDLINK_RPATHDIRS+=	${PREFIX}/lib/klayout
 .include "../../mk/bsd.pkg.mk"

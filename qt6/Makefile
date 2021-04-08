@@ -2,41 +2,28 @@
 
 DISTNAME=	qt6-${QTVERSION}
 
-COMMENT=	"meta-package" for version 5 of the QT GUI C++ toolkit
+COMMENT=	"meta-package" for version 6 of the QT GUI C++ toolkit
+
+CATEGORIES=	meta-pkgs
 
 META_PACKAGE=	yes
 
 .include "Makefile.common"
 
-DEPENDS+=	qt5-qtbase-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtbase
-DEPENDS+=	qt5-qtcharts-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtcharts
-DEPENDS+=	qt5-qtconnectivity-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtconnectivity
-DEPENDS+=	qt5-qtdeclarative-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtdeclarative
-DEPENDS+=	qt5-qtdoc-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtdoc
-DEPENDS+=	qt5-qtgraphicaleffects-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtgraphicaleffects
-DEPENDS+=	qt5-qtimageformats-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtimageformats
-DEPENDS+=	qt5-qtlocation-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtlocation
-DEPENDS+=	qt5-qtmultimedia-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtmultimedia
-DEPENDS+=	qt5-qtnetworkauth-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtnetworkauth
-DEPENDS+=	qt5-qtquickcontrols-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtquickcontrols
-DEPENDS+=	qt5-qtquickcontrols2-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtquickcontrols2
-DEPENDS+=	qt5-qtscript-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtscript
-DEPENDS+=	qt5-qtscxml-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtscxml
-DEPENDS+=	qt5-qtsensors-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtsensors
-DEPENDS+=	qt5-qtserialport-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtserialport
-DEPENDS+=	qt5-qtspeech-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtspeech
-DEPENDS+=	qt5-qtsvg-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtsvg
-DEPENDS+=	qt5-qttools-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qttools
-DEPENDS+=	qt5-qttranslations-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qttranslations
-DEPENDS+=	qt5-qtvirtualkeyboard-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtvirtualkeyboard
-DEPENDS+=	qt5-qtwebchannel-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtwebchannel
-DEPENDS+=	qt5-qtwebsockets-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtwebsockets
-DEPENDS+=	qt5-qtxmlpatterns-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtxmlpatterns
-.if ${OPSYS} == "Darwin"
-DEPENDS+=	qt5-qtmacextras-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtmacextras
-.else
-DEPENDS+=	qt5-qtwayland-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtwayland
-DEPENDS+=	qt5-qtx11extras-${QTVERSION}{,nb[0-9]*}:../../x11/qt5-qtx11extras
-.endif
+DEPENDS+=	qt6-qtbase-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtbase
+DEPENDS+=	qt6-odbc-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-odbc
+DEPENDS+=	qt6-psql-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-psql
+DEPENDS+=	qt6-qtdeclarative-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtdeclarative
+DEPENDS+=	qt6-qtimageformats-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtimageformats
+DEPENDS+=	qt6-qtnetworkauth-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtnetworkauth
+DEPENDS+=	qt6-qtquick3d-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtquick3d
+DEPENDS+=	qt6-qtquickcontrols2-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtquickcontrols2
+DEPENDS+=	qt6-qtquicktimeline-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtquicktimeline
+DEPENDS+=	qt6-qtshadertools-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtshadertools
+DEPENDS+=	qt6-qtsvg-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtsvg
+DEPENDS+=	qt6-qttools-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qttools
+DEPENDS+=	qt6-qtwayland-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qtwayland
+DEPENDS+=	qt6-qt3d-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qt3d
+DEPENDS+=	qt6-qt5compat-${QTVERSION}{,nb[0-9]*}:../../wip/qt6-qt5compat
 
 .include "../../mk/bsd.pkg.mk"

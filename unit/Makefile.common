@@ -13,7 +13,6 @@ CATEGORIES=	www
 MASTER_SITES=	https://unit.nginx.org/download/
 
 HOMEPAGE=	https://unit.nginx.org/
-COMMENT?=	Dynamic web application server
 LICENSE=	apache-2.0
 
 .include "../../mk/bsd.prefs.mk"
@@ -45,11 +44,14 @@ CONFIGURE_ARGS+=	--ld-opt="-L${PREFIX}/lib -R${PREFIX}/lib"
 CONFIGURE_ARGS+=	--log=${UNIT_LOGDIR}/unit.log
 CONFIGURE_ARGS+=	--modules=${UNIT_EXTENSION_DIR}
 CONFIGURE_ARGS+=	--pid=${UNIT_PIDDIR}/unit.pid
-CONFIGURE_ARGS+=	--state=libexec/unit
+CONFIGURE_ARGS+=	--state=${UNIT_DATADIR}
 CONFIGURE_ARGS+=	--control=unix:${UNIT_RUNDIR}/control.unit.sock
 CONFIGURE_ARGS+=	--tmp=${UNIT_TMPDIR}
 CONFIGURE_ARGS+=	--user=${UNIT_USER}
 CONFIGURE_ARGS+=	--group=${UNIT_GROUP}
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/share/man
+
+CHECK_WRKREF_SKIP=	libexec/unit/modules/ruby.unit.so
 
 .include "../../wip/unit/options.mk"
 
@@ -59,13 +61,3 @@ OWN_DIRS=		${UNIT_LOGDIR} ${UNIT_RUNDIR}
 OWN_DIRS_PERMS+=	${UNIT_DATADIR} ${UNIT_USER} ${UNIT_GROUP} 0700
 
 USE_LANGUAGES=	c
-
-post-build:
-.if !empty(PKG_OPTIONS:Mdevkit)
-	cd ${WRKSRC} && ${MAKE} build/libunit.a
-.endif
-
-post-install:
-.if !empty(PKG_OPTIONS:Mdevkit)
-	${MAKE} -C ${WRKSRC} libunit-install DESTDIR=${DESTDIR}
-.endif

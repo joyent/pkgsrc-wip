@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.7 2020/01/26 17:30:46 rillig Exp $
 
-DISTNAME=	samtools-1.10
+DISTNAME=	samtools-1.12
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 
@@ -25,7 +25,7 @@ SUBST_FILES.bash+=	test/test.pl
 
 REPLACE_PERL+=		misc/*.pl
 REPLACE_PERL+=		test/*.pl
-REPLACE_PERL+=		misc/plot-bamstats
+REPLACE_PERL+=		misc/plot-bamstats misc/plot-ampliconstats
 REPLACE_LUA+=		misc/*.lua
 
 CONFIGURE_ARGS+=	--with-htslib=system

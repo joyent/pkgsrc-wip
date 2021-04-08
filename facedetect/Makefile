@@ -3,7 +3,7 @@
 PORTREVISION=	0.1
 PKGBASE=	facedetect
 DISTNAME=	${PKGBASE}-${PORTREVISION}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	graphics
 
 MASTER_SITES=		${MASTER_SITE_GITHUB:=wavexx/}
@@ -16,7 +16,8 @@ HOMEPAGE=	https://www.thregr.org/~wavexx/software/facedetect/
 COMMENT=	Simple face detector for batch processing
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	opencv>=2.4:../../graphics/opencv2
+DEPENDS+=	opencv>=3.4.9:../../graphics/opencv
+DEPENDS+=	opencv-contrib-face>=3.4.9:../../graphics/opencv-contrib-face
 
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		post-extract

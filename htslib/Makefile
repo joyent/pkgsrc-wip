@@ -1,9 +1,10 @@
 # $NetBSD$
 
-DISTNAME=	htslib-1.10.2.110
+DISTNAME=	htslib-1.12
 CATEGORIES=	biology
-MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
-GITHUB_TAG=	da595880d134b29fb62f726b72bdc6302ffc9ccc
+# Github-generated distfiles are incomplete, use custom tarballs instead
+MASTER_SITES=	https://github.com/samtools/htslib/releases/download/${PKGVERSION_NOREV}/
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://www.htslib.org/

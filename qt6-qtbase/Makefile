@@ -3,6 +3,7 @@
 DISTNAME=	qtbase-everywhere-src-${QTVERSION}
 PKGNAME=	qt6-qtbase-${QTVERSION}
 COMMENT=	C++ X GUI toolkit
+CATEGORIES=	x11
 
 .include "../../wip/qt6-qtbase/Makefile.common"
 
@@ -47,6 +48,8 @@ CONFIGURE_ENV+=		MAKEFLAGS=-j${MAKE_JOBS}
 .  endif
 .endif
 
+USE_TOOLS+=		bash:run
+
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} != "Darwin"
@@ -79,7 +82,6 @@ CONFIGURE_ARGS+=		-platform solaris-cc-64
 CONFIGURE_ARGS+=		-platform solaris-cc
 .    endif
 .  endif
-NETWORK_LIBS=			-lsocket -lnsl
 .elif ${OPSYS} == "Interix"
 CONFIGURE_ARGS+=		-platform interix-g++
 CFLAGS+=			-I/usr/local/include/bind
@@ -114,13 +116,16 @@ LDFLAGS.FreeBSD+=		-lutil
 REPLACE_PERL+=		bin/fixqt4headers.pl
 REPLACE_PERL+=		bin/syncqt.pl
 REPLACE_PERL+=		mkspecs/features/data/unix/findclasslist.pl
+REPLACE_BASH+=		util/android/android_emulator_launcher.sh
 
 PTHREAD_OPTS+=		require
 UNLIMIT_RESOURCES=	datasize
 
 BUILDLINK_PASSTHRU_DIRS+=	${QTPREFIX}
 
-#
+# pkgsrc does not set rapth during build
+# but qdbuscpp2xml and qdbuscpp2xml are
+# executed during build
 MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/lib
 
 INSTALLATION_DIRS=	lib/pkgconfig
@@ -220,7 +225,6 @@ TOOL_DEPENDS+=	xmlstarlet-[0-9]*:../../textproc/xmlstarlet
 .include "../../graphics/png/buildlink3.mk"
 .include "../../math/double-conversion/buildlink3.mk"
 .include "../../security/libb2/buildlink3.mk"
-.include "../../security/mit-krb5/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../wip/md4c/buildlink3.mk"
@@ -251,5 +255,6 @@ BUILDLINK_API_DEPENDS.libxcb+=	libxcb>=1.11
 .include "../../x11/libxkbcommon/buildlink3.mk"
 .endif
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

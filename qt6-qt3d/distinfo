@@ -1,0 +1,10 @@
+$NetBSD$
+
+SHA1 (qt3d-everywhere-src-6.0.3.tar.xz) = 07ecd24e78524aee5d4bd1592689404cb5575aa7
+RMD160 (qt3d-everywhere-src-6.0.3.tar.xz) = d5d9f5ad658b1c3502364eb96d40c91fcc7de1a8
+SHA512 (qt3d-everywhere-src-6.0.3.tar.xz) = dce448707ab6006079b0d62ff2bc7a6bf9ce9c264396d54affaa0959b51c5eae671f02a6a4c3a4e5aa14bc8e6da599197ac791a983ecc51c31eb262cf412f75e
+Size (qt3d-everywhere-src-6.0.3.tar.xz) = 103140008 bytes
+SHA1 (patch-qt__cmdline.cmake) = 3e744e23d675a308ecf7ff5c778c08966ca77491
+SHA1 (patch-src_plugins_geometryloaders_configure.cmake) = 02401ea3019229fdc448fe2b31c17ebeca69ca76
+SHA1 (patch-src_plugins_renderers_opengl_CMakeLists.txt) = 0a94746a8767cd9244ae394d95872b15b6eaefb0
+SHA1 (patch-src_plugins_sceneparsers_configure.cmake) = 19b9f5f6cf89d7806e13d5cc808e4b9aa49e38bd

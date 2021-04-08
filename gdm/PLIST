@@ -7,10 +7,13 @@ include/gdm/gdm-client.h
 include/gdm/gdm-sessions.h
 include/gdm/gdm-user-switching.h
 lib/girepository-1.0/Gdm-1.0.typelib
-lib/libgdm.la
+lib/libgdm.so
+lib/libgdm.so.1
+lib/libgdm.so.1.0.0
 lib/pkgconfig/gdm.pc
-libexec/gdm-disable-wayland
+lib/security/pam_gdm.so
 libexec/gdm-host-chooser
+libexec/gdm-runtime-config
 libexec/gdm-session-worker
 libexec/gdm-simple-chooser
 libexec/gdm-wayland-session
@@ -23,12 +26,6 @@ share/examples/gdm/PostSession/Default
 share/examples/gdm/PreSession/Default
 share/examples/gdm/Xsession
 share/examples/gdm/custom.conf
-${PLIST.pam}share/examples/gdm/pam.d/gdm-autologin
-${PLIST.pam}share/examples/gdm/pam.d/gdm-fingerprint
-${PLIST.pam}share/examples/gdm/pam.d/gdm-launch-environment
-${PLIST.pam}share/examples/gdm/pam.d/gdm-password
-${PLIST.pam}share/examples/gdm/pam.d/gdm-pin
-${PLIST.pam}share/examples/gdm/pam.d/gdm-smartcard
 share/examples/pam.d/gdm-launch-environment
 share/gdm/BuiltInSessions/custom.desktop
 share/gdm/gdb-cmd
@@ -55,6 +52,8 @@ share/help/en_GB/gdm/index.docbook
 share/help/en_GB/gdm/legal.xml
 share/help/es/gdm/index.docbook
 share/help/es/gdm/legal.xml
+share/help/eu/gdm/index.docbook
+share/help/eu/gdm/legal.xml
 share/help/fr/gdm/index.docbook
 share/help/fr/gdm/legal.xml
 share/help/gl/gdm/index.docbook
@@ -198,6 +197,3 @@ share/locale/zh_HK/LC_MESSAGES/gdm.mo
 share/locale/zh_TW/LC_MESSAGES/gdm.mo
 share/locale/zu/LC_MESSAGES/gdm.mo
 share/pixmaps/NetBSD.xpm
-@pkgdir var/run/gdm/greeter
-@pkgdir var/lib/gdm/.local/share/applications
-@pkgdir var/cache/gdm

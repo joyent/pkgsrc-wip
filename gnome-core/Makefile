@@ -20,7 +20,7 @@ DEPENDS+=	atk-[0-9]*:../../devel/atk
 DEPENDS+=	atkmm-[0-9]*:../../devel/atkmm
 DEPENDS+=	bijiben-[0-9]*:../../wip/bijiben
 DEPENDS+=	cantarell-fonts-[0-9]*:../../fonts/cantarell-fonts
-DEPENDS+=	caribou-[0-9]*:../../wip/caribou
+DEPENDS+=	caribou-[0-9]*:../../x11/caribou
 DEPENDS+=	clutter-[0-9]*:../../graphics/clutter
 DEPENDS+=	clutter-gst-[0-9]*:../../wip/clutter-gst
 DEPENDS+=	clutter-gtk-[0-9]*:../../graphics/clutter-gtk
@@ -89,7 +89,7 @@ DEPENDS+=	libgsf-[0-9]*:../../devel/libgsf
 # TODO libgsystem
 DEPENDS+=	libgtop-[0-9]*:../../sysutils/libgtop
 # TODO libgudev
-DEPENDS+=	libgweather-[0-9]*:../../wip/libgweather
+DEPENDS+=	libgweather-[0-9]*:../../devel/libgweather
 DEPENDS+=	libgxps-[0-9]*:../../print/libgxps
 # TODO libmediaart
 DEPENDS+=	libnotify-[0-9]*:../../sysutils/libnotify
@@ -119,8 +119,8 @@ DEPENDS+=	vino-[0-9]*:../../wip/vino
 DEPENDS+=	vte-[0-9]*:../../wip/vte # x11/vte029 ?
 # wing - Windows only
 DEPENDS+=	yelp3-[0-9]*:../../misc/yelp3
-DEPENDS+=	yelp-tools-[0-9]*:../../wip/yelp-tools
+DEPENDS+=	yelp-tools-[0-9]*:../../textproc/yelp-tools
 DEPENDS+=	yelp-xsl-[0-9]*:../../textproc/yelp-xsl
-DEPENDS+=	zenity-[0-9]*:../../wip/zenity
+DEPENDS+=	zenity-[0-9]*:../../x11/zenity
 
 .include "../../mk/bsd.pkg.mk"

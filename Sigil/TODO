@@ -1,0 +1,5 @@
+* The update checker python script uses openssl but that calls a
+  nss function, causing a segfault.
+
+* (if the update check is skipped) The HTML Preview window is empty,
+  probably a bug in qt5-qtwebengine.

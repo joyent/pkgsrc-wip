@@ -26,16 +26,16 @@ SUBST_FILES.fix-moc+=	_KDE_build/kcmkwin/kwinscreenedges/CMakeFiles/kcm_kwintouc
 SUBST_FILES.fix-moc+=	_KDE_build/CMakeFiles/kwin_autogen.dir/AutogenInfo.cmake
 SUBST_SED.fix-moc=	-e 's,;${PREFIX}/include;,;,g'
 
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	data/CMakeLists.txt
-SUBST_FILES.xdg+=	kcmkwin/kwincompositing/CMakeLists.txt
-SUBST_FILES.xdg+=	kcmkwin/kwinscripts/CMakeLists.txt
-SUBST_FILES.xdg+=	kcmkwin/kwintabbox/CMakeLists.txt
-SUBST_FILES.xdg+=	plugins/kdecorations/aurorae/src/CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-SUBST_SED.xdg+=		-e 's:{CONFIG_INSTALL_DIR}:{KDE_INSTALL_XDG_EX_DIR}:'
+#SUBST_CLASSES+=		xdg
+#SUBST_STAGE.xdg=	pre-configure
+#SUBST_MESSAGE.xdg=	Install via examples dir.
+#SUBST_FILES.xdg=	data/CMakeLists.txt
+#SUBST_FILES.xdg+=	kcmkwin/kwincompositing/CMakeLists.txt
+#SUBST_FILES.xdg+=	kcmkwin/kwinscripts/CMakeLists.txt
+#SUBST_FILES.xdg+=	kcmkwin/kwintabbox/CMakeLists.txt
+#SUBST_FILES.xdg+=	plugins/kdecorations/aurorae/src/CMakeLists.txt
+#SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
+#SUBST_SED.xdg+=		-e 's:{CONFIG_INSTALL_DIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/aurorae.knsrc \
@@ -59,4 +59,6 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/org_kde_kwin.categories \
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtmultimedia/buildlink3.mk"
 .include "../../x11/xcb-util-cursor/buildlink3.mk"
+.include "../../wip/libinput/buildlink3.mk"
+.include "../../wip/libudev/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

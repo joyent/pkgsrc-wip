@@ -2,7 +2,7 @@
 
 DISTNAME=	efl-1.25.1
 CATEGORIES=	x11
-PKGREVISION=	4
+PKGREVISION=	5
 MASTER_SITES=	https://download.enlightenment.org/rel/libs/efl/
 EXTRACT_SUFX=	.tar.xz
 
@@ -59,7 +59,6 @@ MESON_ARGS+=	-Dsystemd=false
 PLIST.linux=	yes
 .endif
 MESON_ARGS+=	-Deeze=false
-MESON_ARGS+=	-Dbuild-tests=false
 MESON_ARGS+=	-Dbuild-examples=false
 MESON_ARGS+=	-Dphysics=true
 

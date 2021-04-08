@@ -1,7 +1,7 @@
 # $NetBSD$
 
 GITHUB_PROJECT=	Vulkan-Loader
-DISTNAME=	sdk-1.1.126.0
+DISTNAME=	sdk-1.2.162.0
 PKGNAME=	${GITHUB_PROJECT:tl}-${DISTNAME:S/sdk-//}
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=KhronosGroup/}
@@ -22,12 +22,14 @@ USE_LANGUAGES=	c c++
 CMAKE_ARGS+=	-DBUILD_WSI_WAYLAND_SUPPORT=OFF
 CMAKE_ARGS+=	-DBUILD_TESTS=ON
 
+CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
+
 PKGCONFIG_OVERRIDE+=	loader/vulkan.pc.in
 
 .include "../../devel/googletest/buildlink3.mk"
 .include "../../lang/python/tool.mk"
 .include "../../sysutils/libpciaccess/buildlink3.mk"
-.include "../../wip/vulkan-headers/buildlink3.mk"
+.include "../../graphics/vulkan-headers/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libxcb/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"

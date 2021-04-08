@@ -1,0 +1,9 @@
+===========================================================================
+$NetBSD: MESSAGE,v 1.1 2020/11/10 18:28:17 nia Exp $
+
+GNOME requires sysutils/dbus to be running as a system service before
+it will start.
+
+exec ck-launch-session gnome-session
+
+===========================================================================

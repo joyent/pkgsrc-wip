@@ -1,22 +1,39 @@
 $NetBSD$
 
-somehow -fp-model is added to gcc builds when it should not
+* fix linking on Free and OpenBSD due to missing environ symbol
 
-use gzip compression instead of zstd since libarchive might miss zstd even
-if QT uses it, fixes the configure step on NetBSD
+* get QOperatinSystemVersion using uname on Free and NetBSD
 
---- src/corelib/CMakeLists.txt.orig	2020-12-04 10:14:27.000000000 +0000
+* use gzip compression instead of zstd since libarchive might miss zstd even
+  if QT uses it, fixes the configure step on NetBSD
+
+--- src/corelib/CMakeLists.txt.orig	2021-02-09 18:01:03.000000000 +0000
 +++ src/corelib/CMakeLists.txt
-@@ -690,7 +690,7 @@ qt_internal_extend_target(Core CONDITION
-         WrapAtomic::WrapAtomic
+@@ -440,8 +440,9 @@ qt_internal_extend_target(Core CONDITION MSVC AND (TES
+         "/BASE:0x67000000"
  )
  
--qt_internal_extend_target(Core CONDITION ICC
-+qt_internal_extend_target(Core CONDITION (ICC AND NOT GCC)
-     COMPILE_OPTIONS
-         -fp-model
-         strict
-@@ -1174,7 +1174,7 @@ if(QT_FEATURE_mimetype AND QT_FEATURE_mi
+-#### Keys ignored in scope 6:.:.:corelib.pro:FREEBSD OR OPENBSD:
+-# QMAKE_LFLAGS_NOUNDEF = <EMPTY>
++if(FREEBSD OR OPENBSD)
++    target_link_options(Core PRIVATE "LINKER:--warn-unresolved-symbols")
++endif()
+ 
+ qt_internal_extend_target(Core CONDITION QT_FEATURE_animation
+     SOURCES
+@@ -531,6 +532,11 @@ qt_internal_extend_target(Core CONDITION INTEGRITY
+         --pending_instantiations=128
+ )
+ 
++qt_internal_extend_target(Core CONDITION FREEBSD OR NETBSD
++    SOURCES
++        global/qoperatingsystemversion_uname.cpp
++)
++
+ #### Keys ignored in scope 14:.:.:corelib.pro:pathIsAbsolute(_ss_CMAKE_HOST_DATA_DIR):
+ # CMAKE_HOST_DATA_DIR = "$$[QT_HOST_DATA/src]/"
+ # CMAKE_HOST_DATA_DIR_IS_ABSOLUTE = "True"
+@@ -1178,7 +1184,7 @@ if(QT_FEATURE_mimetype AND QT_FEATURE_mimetype_databas
              COMMENT "Generating ${qmimeprovider_db_output}"
          )
      else()

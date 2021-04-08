@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.6 2015/06/06 20:44:44 krytarowski Exp $
 
-DISTNAME=	gdm-3.36.2
+DISTNAME=	gdm-40.0
 PKGREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GITHUB:=GNOME/}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Gnome Display Manager
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	zenity>=2.16.0:../../wip/zenity
+DEPENDS+=	zenity>=3.32.0:../../x11/zenity
 
 USE_PKGLOCALEDIR=	YES
 GNU_CONFIGURE=		YES
@@ -21,34 +21,25 @@ BUILD_DEFS+=		VARBASE
 
 USE_LANGUAGES=		c c++
 
-.include "options.mk"
+CPPFLAGS+=		-DWITH_CONSOLE_KIT=1
+CPPFLAGS+=		-DCONSOLEKIT_DIR=\"${PREFIX}/libexec\"
 
-SUBST_CLASSES+=		paths
-SUBST_STAGE.paths=	pre-configure
-SUBST_FILES.paths+=	configure.ac
-SUBST_FILES.paths+=	daemon/gdm-session-worker.c
-SUBST_FILES.paths+=	data/Init.in
-SUBST_VARS.paths=	PREFIX
-SUBST_VARS.paths+=	VARBASE
-
-CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ARGS+=	--with-dmconfdir=${PKG_SYSCONFDIR}/dm
-CONFIGURE_ARGS+=	--with-sysconfsubdir=
-CONFIGURE_ARGS+=	--with-prefetch=yes
-CONFIGURE_ARGS+=	--without-plymouth
-CONFIGURE_ARGS+=	--without-systemd
-CONFIGURE_ARGS+=	--disable-systemd-journal
-CONFIGURE_ARGS+=	--disable-user-display-server
-CONFIGURE_ARGS+=	--with-user=${GDMOWN}
-CONFIGURE_ARGS+=	--with-group=${GDMGRP}
-CONFIGURE_ARGS+=	--with-dbus-sys=${PREFIX}/etc/dbus-1/system.d
-CONFIGURE_ARGS+=	--with-initial-vt=05
-CONFIGURE_ARGS+=	--enable-gdm-xsession
-CONFIGURE_ARGS+=	--with-default-path="/usr/local/bin:/usr/local/sbin:${PREFIX}/bin:${PREFIX}/sbin:/usr/bin:/usr/sbin:/bin/sbin"
-CONFIGURE_ENV+=		PREFIX=${PREFIX}
-CONFIGURE_ENV+=		X11BASE=${X11BASE}
-CONFIGURE_SCRIPT=	./autogen.sh
+MESON_ARGS+=		-Dlocalstatedir=${VARBASE}
+MESON_ARGS+=		--sysconfdir=${EGDIR}
+MESON_ARGS+=		-Ddmconfdir=${PKG_SYSCONFDIR}/dm
+MESON_ARGS+=		-Dsysconfsubdir=
+MESON_ARGS+=		-Dprefetch=yes
+MESON_ARGS+=		-Dplymouth=disabled
+MESON_ARGS+=		-Dsystemd=disabled
+MESON_ARGS+=		-Dsystemd-journal=false
+MESON_ARGS+=		-Duser-display-server=false
+MESON_ARGS+=		-Duser=${GDMOWN}
+MESON_ARGS+=		-Dgroup=${GDMGRP}
+MESON_ARGS+=		-Ddbus-sys=${PREFIX}/etc/dbus-1/system.d
+MESON_ARGS+=		-Dinitial-vt=05
+MESON_ARGS+=		-Dgdm-xsession=true
+MESON_ARGS+=		-Dwayland-support=false
+MESON_ARGS+=		-Ddefault-path="/usr/local/bin:/usr/local/sbin:${PREFIX}/bin:${PREFIX}/sbin:/usr/bin:/usr/sbin:/bin/sbin"
 INSTALL_MAKE_FLAGS+=	${MAKE_FLAGS}
 INSTALL_MAKE_FLAGS+=	GDM_CUSTOM_CONF=${EGDIR}/custom.conf
 INSTALL_MAKE_FLAGS+=	sysconfdir=${EGDIR}
@@ -60,7 +51,7 @@ OWN_DIRS+=		${PKG_SYSCONFDIR}/PostSession
 OWN_DIRS+=		${PKG_SYSCONFDIR}/PreSession
 OWN_DIRS+=		${PKG_SYSCONFDIR}/dm
 OWN_DIRS+=		${PKG_SYSCONFDIR}/modules
-OWN_DIRS+=		${VARBASE}/gdm
+OWN_DIRS+=		${VARBASE}/lib/gdm
 OWN_DIRS+=		${VARBASE}/log/gdm
 
 PKG_SYSCONFSUBDIR=	gdm
@@ -97,7 +88,7 @@ GDMGRP=		daemon
 .if (${OPSYS} == "NetBSD" || ${OPSYS} == "OpenBSD") && \
     (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64" || \
      ${MACHINE_ARCH} == "aarch64")
-CONFIGURE_ARGS+=	X_SERVER_ARGS="vt05"
+MESON_ARGS+=	-Dinitial-vt=5
 .endif
 
 post-install:
@@ -110,6 +101,7 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/gdm-* ${DESTDIR}/${PREFIX}/share/examples/pam.d
 	${CHMOD} +x ${DESTDIR}${PREFIX}/share/examples/gdm/Xsession
 
+.include "../../devel/meson/build.mk"
 .include "../../sysutils/gsettings-desktop-schemas/buildlink3.mk"
 .include "../../security/openpam/buildlink3.mk"
 .include "../../devel/dconf/buildlink3.mk"
@@ -118,6 +110,6 @@ post-install:
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../sysutils/accountsservice/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../devel/glib2/buildlink3.mk"
+.include "../../devel/glib2/schemas.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

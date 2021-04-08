@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.19 2020/08/30 06:03:53 tnn Exp $
 
-DISTNAME=	unifi-6.0.43
-PKGREVISION=	1
+DISTNAME=	unifi-6.0.45
 CATEGORIES=	net
 MASTER_SITES=	-http://dl.ubnt.com/unifi/${PKGVERSION_NOREV}/UniFi.unix.zip
 EXTRACT_SUFX=	.zip
@@ -46,7 +45,7 @@ INSTALLATION_DIRS=	unifi
 # Emulated JDK doesn't work due to epoll issues.  Also, would require
 # matching emulated native libraries, and we only compile actual
 # native libaries.
-PKG_JVMS_ACCEPTED=	openjdk8
+PKG_JVMS_ACCEPTED=	openjdk11 openjdk8
 PKGSRC_MAKE_ENV+=	JAVA_HOME=${PKG_JAVA_HOME}
 USE_LANGUAGES=		c c++	# for snappy JNI library
 USE_TOOLS+=		gmake pax
