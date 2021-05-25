@@ -42,6 +42,7 @@ CONFIGURE_ARGS+=	-system-libpng
 CONFIGURE_ARGS+=	-system-pcre
 CONFIGURE_ARGS+=	-system-sqlite
 CONFIGURE_ARGS+=	-system-zlib
+CONFIGURE_ARGS+=	-avoid_cmake_archiving_api
 .if defined(MAKE_JOBS)
 .  if !defined(MAKE_JOBS_SAFE) || empty(MAKE_JOBS_SAFE:M[nN][oO])
 CONFIGURE_ENV+=		MAKEFLAGS=-j${MAKE_JOBS}
@@ -113,8 +114,7 @@ LDFLAGS+=			-lexecinfo
 LDFLAGS.FreeBSD+=		-lutil
 .endif
 
-REPLACE_PERL+=		bin/fixqt4headers.pl
-REPLACE_PERL+=		bin/syncqt.pl
+REPLACE_PERL+=		libexec/syncqt.pl
 REPLACE_PERL+=		mkspecs/features/data/unix/findclasslist.pl
 REPLACE_BASH+=		util/android/android_emulator_launcher.sh
 
@@ -127,8 +127,6 @@ BUILDLINK_PASSTHRU_DIRS+=	${QTPREFIX}
 # but qdbuscpp2xml and qdbuscpp2xml are
 # executed during build
 MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/lib
-
-INSTALLATION_DIRS=	lib/pkgconfig
 
 CHECK_INTERPRETER_SKIP+=	qt6/mkspecs/features/data/mac/objc_namespace.sh
 CHECK_INTERPRETER_SKIP+=	qt6/mkspecs/features/uikit/device_destinations.sh

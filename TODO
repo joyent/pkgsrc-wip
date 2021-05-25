@@ -43,7 +43,7 @@ Suggested package updates
 	o gforge-4.5.11
 	o giggle-0.6.1
 	o gitg-0.3.2
-	o gitlab-12.8
+	o gitlab-13.10
 	o globulation2-0.9.4
 	o glsl-1.30
 	o gnome-do-0.9
@@ -108,6 +108,7 @@ Suggested package updates
 	o py-PyPE-2.9
 	o py-bitstring-3.1.3
 	o py-kivy-1.9.1
+	o py-progressbar2-3.53.1
 	o py-rpyc-3.2.1
 	o py-smop-0.29
 	o py-vanguards-0.3.1
@@ -123,6 +124,7 @@ Suggested package updates
 	o rygel-0.26.0
 	o samhain-4.2.4
 	o scantailor-0.9.11.1
+	o scrc-2.2
 	o sdlpop-1.17
 	o sflphoned-0.7.2
 	o slim-1.3.6

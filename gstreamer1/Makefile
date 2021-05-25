@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.49 2020/08/31 18:10:28 wiz Exp $
 
-DISTNAME=	gstreamer-1.18.3
+DISTNAME=	gstreamer-1.18.4
 PKGNAME=	${DISTNAME:S/gstreamer/gstreamer1/}
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gstreamer.freedesktop.org/src/gstreamer/
@@ -34,6 +34,10 @@ REPLACE_PYTHON+=	scripts/extract-release-date-from-doap-file.py
 REPLACE_PYTHON+=	output/gst/parse/gen_lex.py
 REPLACE_PYTHON+=	output/gst/parse/gen_grammar.py
 REPLACE_PYTHON+=	output/docs/gst-plugins-doc-cache-generator
+
+#Library gmp found: NO
+#Library gsl found: NO
+#Library gslcblas found: NO
 
 .include "../../lang/python/application.mk"
 .include "../../devel/meson/build.mk"

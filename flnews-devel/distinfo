@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (flnews-1.0pre31.tar.bz2) = d8c74baa8456570ddec4ad2cee907dba7dc06e71
-RMD160 (flnews-1.0pre31.tar.bz2) = d0b1139db0096b63d43890f3a1d99185517cbc84
-SHA512 (flnews-1.0pre31.tar.bz2) = ab6304fa4a587eeee9cc1b3d720f7ee84663b198f7712a9645a402a61e72d65b539022ccb1fa2ded27b161ac0cf6322bbc3b631ceb1ccf0aeb2c338a32fab3b5
-Size (flnews-1.0pre31.tar.bz2) = 1168601 bytes
+SHA1 (flnews-1.0.0.tar.bz2) = 3d4db97be262302277aa87b84879d82e29a14b90
+RMD160 (flnews-1.0.0.tar.bz2) = d6420d6b68a2a55cd343aaa0e5ec60866b1e0bb8
+SHA512 (flnews-1.0.0.tar.bz2) = 097a9edaa2b628e0c74008fc2b38df236a5a785e80b25a90a4c1ff621403faba9ed9e3b4dd9dccdddadabd24e0b2b5f886560f825885916bd6b9e4196ef5770b
+Size (flnews-1.0.0.tar.bz2) = 1170870 bytes

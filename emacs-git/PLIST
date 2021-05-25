@@ -1356,6 +1356,8 @@ share/emacs/${PKGVERSION}/lisp/cedet/semantic/grammar-wy.el.gz
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/grammar-wy.elc
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/grammar.el.gz
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/grammar.elc
+share/emacs/${PKGVERSION}/lisp/cedet/semantic/grm-wy-boot.el.gz
+share/emacs/${PKGVERSION}/lisp/cedet/semantic/grm-wy-boot.elc
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/html.el.gz
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/html.elc
 share/emacs/${PKGVERSION}/lisp/cedet/semantic/ia-sb.el.gz
@@ -1613,6 +1615,8 @@ share/emacs/${PKGVERSION}/lisp/emacs-lisp/cl-print.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/cl-print.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/cl-seq.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/cl-seq.elc
+share/emacs/${PKGVERSION}/lisp/emacs-lisp/comp-cstr.el
+share/emacs/${PKGVERSION}/lisp/emacs-lisp/comp.el
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/copyright.el.gz
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/copyright.elc
 share/emacs/${PKGVERSION}/lisp/emacs-lisp/crm.el.gz
@@ -1796,6 +1800,8 @@ share/emacs/${PKGVERSION}/lisp/epa-file.el.gz
 share/emacs/${PKGVERSION}/lisp/epa-file.elc
 share/emacs/${PKGVERSION}/lisp/epa-hook.el.gz
 share/emacs/${PKGVERSION}/lisp/epa-hook.elc
+share/emacs/${PKGVERSION}/lisp/epa-ks.el.gz
+share/emacs/${PKGVERSION}/lisp/epa-ks.elc
 share/emacs/${PKGVERSION}/lisp/epa-mail.el.gz
 share/emacs/${PKGVERSION}/lisp/epa-mail.elc
 share/emacs/${PKGVERSION}/lisp/epa.el.gz
@@ -3809,6 +3815,7 @@ share/emacs/${PKGVERSION}/lisp/textmodes/tex-mode.el.gz
 share/emacs/${PKGVERSION}/lisp/textmodes/tex-mode.elc
 share/emacs/${PKGVERSION}/lisp/textmodes/texinfmt.el.gz
 share/emacs/${PKGVERSION}/lisp/textmodes/texinfmt.elc
+share/emacs/${PKGVERSION}/lisp/textmodes/texinfo-loaddefs.el
 share/emacs/${PKGVERSION}/lisp/textmodes/texinfo.el.gz
 share/emacs/${PKGVERSION}/lisp/textmodes/texinfo.elc
 share/emacs/${PKGVERSION}/lisp/textmodes/texnfo-upd.el.gz
@@ -3839,6 +3846,8 @@ share/emacs/${PKGVERSION}/lisp/tool-bar.el.gz
 share/emacs/${PKGVERSION}/lisp/tool-bar.elc
 share/emacs/${PKGVERSION}/lisp/tooltip.el.gz
 share/emacs/${PKGVERSION}/lisp/tooltip.elc
+share/emacs/${PKGVERSION}/lisp/transient.el.gz
+share/emacs/${PKGVERSION}/lisp/transient.elc
 share/emacs/${PKGVERSION}/lisp/tree-widget.el.gz
 share/emacs/${PKGVERSION}/lisp/tree-widget.elc
 share/emacs/${PKGVERSION}/lisp/tutorial.el.gz

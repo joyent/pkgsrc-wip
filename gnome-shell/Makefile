@@ -1,11 +1,12 @@
 # $NetBSD: Makefile,v 1.4 2021/02/07 06:30:40 ryoon Exp $
 
 DISTNAME=	gnome-shell-40.0
+PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	dan@alt.md
+MAINTAINER=	cirnatdan@NetBSD.org
 HOMEPAGE=	https://wiki.gnome.org/Projects/GnomeShell
 COMMENT=	Next generation GNOME shell
 LICENSE=	gnu-gpl-v2
@@ -21,6 +22,8 @@ MESON_ARGS+=	-Dman=true
 TOOL_DEPENDS+=	sassc>=3.6:../../www/sassc
 TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
 TOOL_DEPENDS+=	gdbus-codegen>=2.64:../../devel/gdbus-codegen
+
+DEPENDS+=	libgdm>=40.0:../../x11/libgdm
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/subprojects/gvc
 
@@ -42,6 +45,7 @@ post-extract:
 	cp ${FILESDIR}/*.xml ${WRKSRC}/data/dbus-interfaces/
 
 .include "../../devel/meson/build.mk"
+BUILDLINK_API_DEPENDS.libgweather+=	libgweather>=40.0
 .include "../../devel/libgweather/buildlink3.mk"
 .include "../../x11/gtk4/buildlink3.mk"
 .include "../../archivers/gnome-autoar/buildlink3.mk"
@@ -62,6 +66,6 @@ post-extract:
 .include "../../security/polkit/buildlink3.mk"
 .include "../../sysutils/gsettings-desktop-schemas/buildlink3.mk"
 .include "../../wip/mutter/buildlink3.mk"
-.include "../../wip/gnome-desktop3/buildlink3.mk"
+.include "../../x11/gnome-desktop3/buildlink3.mk"
 .include "../../x11/startup-notification/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

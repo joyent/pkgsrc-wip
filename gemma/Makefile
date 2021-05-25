@@ -25,17 +25,12 @@ MAKE_FLAGS+=	LDFLAGS+="${LAPACK_LIBS} -lgsl -lcblas -lz"
 MAKE_FILE=	${FILESDIR}/Makefile
 
 # Requires multithreading for decent performance
-BLAS_ACCEPTED=	openblas_pthread openblas_openmp
-
-.include "../../wip/mk/blas.buildlink3.mk"
+# Remember that this would interact with any limitation
+# of math/cblas, if there were any.
+BLAS_ACCEPTED=	openblas_pthread openblas_openmp accelerate.framework
 
 .if !empty(BLAS_TYPE:Mopenblas*)
 CXXFLAGS+=	-I${PREFIX}/include/${BLAS_TYPE} -DOPENBLAS
-.endif
-
-# No multithreading
-.if ${BLAS_TYPE} == "openblas"
-CXXFLAGS+=	-DOPENBLAS_LEGACY
 .endif
 
 INSTALLATION_DIRS=	bin share/examples
@@ -44,7 +39,7 @@ do-test:
 	(cd ${WRKSRC}/test && ${SH} test_suite.sh)
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../wip/cblas/buildlink3.mk"
+.include "../../math/cblas/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
 .include "../../math/eigen3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

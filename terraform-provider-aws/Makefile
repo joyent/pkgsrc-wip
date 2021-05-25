@@ -1,7 +1,6 @@
 # $NetBSD: Makefile,v 1.25 2021/03/19 17:37:03 bsiegert Exp $
 
-DISTNAME=	terraform-provider-aws-3.27.0
-PKGREVISION=	2
+DISTNAME=	terraform-provider-aws-3.38.0
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=terraform-providers/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -18,12 +17,6 @@ UNLIMIT_RESOURCES=	datasize virtualsize
 TERRAFORM_PROVIDER_BIN=		terraform-provider-aws
 TERRAFORM_PROVIDER_NAMESPACE=	hashicorp
 TERRAFORM_PROVIDER_TYPE=	aws
-
-INSTALLATION_DIRS+=	${TERRAFORM_PROVIDER_DIR}
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/${TERRAFORM_PROVIDER_BIN} \
-	   ${DESTDIR}${PREFIX}/${TERRAFORM_PROVIDER_DIR}
 
 .include "go-modules.mk"
 

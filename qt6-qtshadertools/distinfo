@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (qtshadertools-everywhere-src-6.0.3.tar.xz) = cb27b8d330fcbb6742ca6e7cdbf4690e3675b6ce
-RMD160 (qtshadertools-everywhere-src-6.0.3.tar.xz) = 16498b8bccdb9b4f02ceb1695939a9e0f19b353f
-SHA512 (qtshadertools-everywhere-src-6.0.3.tar.xz) = 5f5fb0d9956dd029e30fcc29bb0c156e9607a3cffdac8d8d7fa95cab0df22f7c3a537bd3b8a7b207b634ded1492498e972b5db027a491d3ee4da916ced4e1a9c
-Size (qtshadertools-everywhere-src-6.0.3.tar.xz) = 904968 bytes
+SHA1 (qtshadertools-everywhere-src-6.1.0.tar.xz) = d1d556c28deb9e40563be2dc210d1d58cb4ef401
+RMD160 (qtshadertools-everywhere-src-6.1.0.tar.xz) = 0eccc1fd9e92669005882d1867137f2d99247651
+SHA512 (qtshadertools-everywhere-src-6.1.0.tar.xz) = 5b3105e4470ef1a922a51833809595406f5e80163edf3005389cfa2a05f18f7299083b5885e057d60f14cda559080394f8c5f3b9bbffcf3543488d019fbe7ec5
+Size (qtshadertools-everywhere-src-6.1.0.tar.xz) = 952896 bytes

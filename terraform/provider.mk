@@ -2,19 +2,32 @@
 #
 # This file implements common logic for Terraform providers in pkgsrc.
 #
-# === Package-settable variables ===
+# Package-settable variables:
 #
 # TERRAFORM_PROVIDER_HOSTNAME (optional)
+#	Hostname of the Terraform registry that distributes the provider.
+#
+#	Default: registry.terraform.io
 #
 # TERRAFORM_PROVIDER_BIN
+#	Binary name of the provider that will be installed under
+#       TERRAFORM_PROVIDER_DIR.
 #
 # TERRAFORM_PROVIDER_NAMESPACE
+#	Organizational namespace within the Terraform registry.
 #
 # TERRAFORM_PROVIDER_TYPE
+#	Short name for the platform or system the provider manages.
 #
-# TERRAFORM_PROVIDER_VERSION
+# TERRAFORM_PROVIDER_VERSION (optional)
+#	Version of the provider.
+#
+#	Default: ${PKGVERSION_NOREV}
 #
 # TERRAFORM_PROVIDER_DIR (optional)
+#	Directory where the provider will be installed.
+#
+#	Default: share/terraform/plugins/${TERRAFORM_PROVIDER_HOSTNAME}/${TERRAFORM_PROVIDER_NAMESPACE}/${TERRAFORM_PROVIDER_TYPE}/${TERRAFORM_PROVIDER_VERSION}/${GO_PLATFORM}
 #
 # Keywords: terraform
 #
@@ -37,11 +50,24 @@ PRINT_PLIST_AWK+=	{ sub("${TERRAFORM_PROVIDER_NAMESPACE}", "$${TERRAFORM_PROVIDE
 PRINT_PLIST_AWK+=	{ sub("${TERRAFORM_PROVIDER_TYPE}", "$${TERRAFORM_PROVIDER_TYPE}") }
 PRINT_PLIST_AWK+=	{ sub("${TERRAFORM_PROVIDER_VERSION}", "$${TERRAFORM_PROVIDER_VERSION}") }
 
+INSTALLATION_DIRS+=	${TERRAFORM_PROVIDER_DIR}
+
 #
-# TODO: overwrite do-install: target so it DTRT both for go-module.mk packages
-# TODO: and go-packages.mk packages.  This can be probably done by checking for
-# TODO: both existence of TERRAFORM_PROVIDER_BIN in .gopath/bin and bin and copy
-# TODO: what is found.  Currently, for all packaged providers, this is probably
-# TODO: good enough but if there is any exception we can probably adjust that
-# TODO: via pre-install:/post-install: too.
+# This should overwrite `do-install:' target, however
+# lang/go/go-{module,package}.mk already overwrite them.
 #
+.if !target(pre-install)
+pre-install:
+	${RUN} \
+	if [ -f ${WRKDIR}/.gopath/bin/${TERRAFORM_PROVIDER_BIN} ]; then \
+		${INSTALL_PROGRAM} ${WRKDIR}/.gopath/bin/${TERRAFORM_PROVIDER_BIN} \
+		    ${DESTDIR}${PREFIX}/${TERRAFORM_PROVIDER_DIR} ; \
+		{ [ -d ${WRKDIR}/.gopath ] && chmod -R +w ${WRKDIR}/.gopath || ${TRUE} ; } ; \
+		${RM} -rf ${WRKDIR}/.gopath/bin ; \
+	elif [ -f ${WRKDIR}/bin/${TERRAFORM_PROVIDER_BIN} ]; then \
+		${INSTALL_PROGRAM} ${WRKDIR}/bin/${TERRAFORM_PROVIDER_BIN} \
+		    ${DESTDIR}${PREFIX}/${TERRAFORM_PROVIDER_DIR} ; \
+		${RM} -rf ${WRKDIR}/bin ; \
+		${RM} -rf ${WRKDIR}/pkg ; \
+	fi
+.endif

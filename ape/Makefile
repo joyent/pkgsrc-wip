@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.7 2014/04/03 01:21:22 outpaddling Exp $
 
-DISTNAME=	APE-3.5.3.17
+DISTNAME=	APE-3.5.3.34
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=outpaddling/}
-GITHUB_TAG=	984a05f6e1939949efb72ffd7b98525b02f2d435
+GITHUB_TAG=	8ff2a5f1636ab840274d19835ea9e4385ba68d6e
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://github.com/outpaddling/APE
@@ -18,6 +18,6 @@ pre-build:
 	cd ${WRKSRC} && ${MAKE} LOCALBASE=${PREFIX} depend
 
 .include "../../wip/libpare/buildlink3.mk"
-.include "../../wip/libbacon/buildlink3.mk"
+.include "../../wip/libxtend/buildlink3.mk"
 .include "../../wip/twintk/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

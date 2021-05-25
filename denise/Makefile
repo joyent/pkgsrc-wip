@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	v1.0.9
+DISTNAME=	v1.1.0
 PKGNAME=	denise-${DISTNAME:S,^v,,}
 CATEGORIES=	emulators
 MASTER_SITES=	https://bitbucket.org/piciji/denise/get/
@@ -12,7 +12,7 @@ HOMEPAGE=	https://bitbucket.org/piciji/denise/
 COMMENT=	Commodore-64 emulator
 LICENSE=	gnu-gpl-v3
 
-WRKSRC=		${WRKDIR}/piciji-denise-b0f2c4bf4115
+WRKSRC=		${WRKDIR}/piciji-denise-958d8df8f7f7
 USE_LANGUAGES=	c c++	#c++17
 USE_TOOLS+=	gmake
 
